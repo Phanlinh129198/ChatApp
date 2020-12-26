@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "800482902291",
+    "firebase_url": "https://chatapplinh-default-rtdb.firebaseio.com",
+    "project_id": "chatapplinh",
+    "storage_bucket": "chatapplinh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800482902291:android:2254217467d9d81de41ae6",
+        "android_client_info": {
+          "package_name": "com.rikkei.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800482902291-9asm8hgfri7i9cehhpfqp2do2mcmknib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_DHR7XUxJkIAMQDfVPydUpMfujO6sLEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800482902291-9asm8hgfri7i9cehhpfqp2do2mcmknib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

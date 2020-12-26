@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rikkei.tranning.chatapp.views.uis.login.LoginViewModel" />
+    </data>
+    <ScrollView
+        android:fillViewport="true"
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:fitsSystemWindows="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:onClick="hideKeyBoard"
+            android:paddingHorizontal="24dp">
+            <ProgressBar
+                android:id="@+id/progress_circular"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/ImageViewLogo"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="57dp"
+                android:src="@drawable/ic_mail_blue"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.33" />
+
+            <TextView
+                android:id="@+id/TextViewDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/txt_title_app"
+                android:textColor="#000000"
+                android:textSize="26sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ImageViewLogo" />
+
+            <TextView
+                android:id="@+id/TextViewLoginTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:text="@string/txt_login"
+                android:textColor="@color/blue"
+                android:textSize="32sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextViewDescription" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="61dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextViewLoginTitle">
+
+                <RelativeLayout
+                    android:id="@+id/layoutEmail"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_email"
+                        android:textColor="@color/grey"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/editTextEmailLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:hint="@string/txt_hint_email"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.EmailAddress}" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="24dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_mail" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_below="@+id/layoutEmail"
+                    android:id="@+id/layoutPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        android:id="@+id/textViewPass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_password"
+                        android:textColor="@color/grey"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/editTextPassLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:inputType="textPassword"
+                        android:hint="@string/txt_hint_pass"
+                        android:text="@={viewModel.Password}" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="24dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_key_1" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/TextViewLosePass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutPass"
+                    android:layout_marginTop="15dp"
+                    android:gravity="right|top"
+                    android:text="@string/txt_forgot_password"
+                    android:textColor="@color/blue"
+                    android:textSize="14sp"
+                    tools:ignore="RtlHardcoded" />
+
+                <Button
+                    android:id="@+id/ButtonLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/TextViewLosePass"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="47dp"
+                    android:background="@drawable/custom_button_login"
+                    android:onClick="@{()->viewModel.onClick()}"
+                    android:text="@string/txt_login"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <TextView
+                app:layout_constraintTop_toBottomOf="@+id/relativeLogin"
+                android:text="@string/txt_register_span"
+                android:id="@+id/ButtonMoveRegister"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="38dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:textSize="14sp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

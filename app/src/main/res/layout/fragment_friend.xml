@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModelFriend"
+            type="com.rikkei.tranning.chatapp.views.uis.friend.SharedFriendViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="hideKeyBoardMain">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/bg" />
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editTextSearchFriend"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="20sp"
+                android:background="@drawable/edittext"
+                android:drawableStart="@drawable/ic_baseline_search_24"
+                android:hint="@string/txt_search_friend"
+                android:padding="5dp" />
+
+            <ImageButton
+                android:id="@+id/imageButtonDeleteSearchFriend"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="65dp"
+                android:layout_marginEnd="25dp"
+                android:background="@null"
+                android:scaleType="center"
+                android:src="@drawable/ic_delete"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/txt_friend"
+                android:textColor="#ffffff"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageViewSearchFriend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20sp"
+                android:layout_marginEnd="20sp"
+                android:src="@drawable/ic_add_new_friend" />
+        </RelativeLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            app:tabRippleColor="@null"
+            android:id="@+id/tabLayoutFriend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/RelativeLayout"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/fragment"
+            app:tabIndicatorColor="#4356B4"
+            app:tabSelectedTextColor="#4356B4"
+            app:tabTextColor="#999999" />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerFriend"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tabLayoutFriend"
+            android:background="@color/white" />
+    </RelativeLayout>
+</layout>

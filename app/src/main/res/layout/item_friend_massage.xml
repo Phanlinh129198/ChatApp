@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeItemFriend"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:weightSum="4">
+    <ImageView
+        android:id="@+id/imageViewCircleChat"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:foregroundGravity="center"
+        android:src="@mipmap/ic_launcher" />
+    <TextView
+        android:visibility="gone"
+        android:padding="3dp"
+        android:id="@+id/textViewSumUnRead"
+        android:background="@drawable/background_notification_main_red"
+        android:textSize="11sp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:layout_marginStart="50dp"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        tools:ignore="SmallSp" />
+    <TextView
+        android:layout_toEndOf="@+id/imageViewCircleChat"
+        android:id="@+id/textViewUserChatName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_alignParentEnd="true"
+        android:id="@+id/textViewTimeMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:textAllCaps="false"
+        android:textColor="@color/grey"
+        android:textSize="12sp"
+         />
+
+    <TextView
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_below="@+id/textViewUserChatName"
+        android:layout_toEndOf="@+id/imageViewCircleChat"
+        android:id="@+id/textViewLastMess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/grey"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_below="@+id/imageViewCircleChat"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:background="@color/iconMain" />
+
+</RelativeLayout>

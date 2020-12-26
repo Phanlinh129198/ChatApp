@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModels"
+            type="com.rikkei.tranning.chatapp.views.uis.signup.SignUpViewModel" />
+    </data>
+
+    <ScrollView
+        android:fitsSystemWindows="true"
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:fitsSystemWindows="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:onClick="hideKeyBoard"
+            android:paddingHorizontal="24dp">
+
+            <ProgressBar
+                android:id="@+id/progress_circular_signUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/ButtonBackRegister"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:background="@null"
+                android:src="@drawable/ic_back_blue"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.07" />
+
+
+            <TextView
+                android:id="@+id/textViewRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/txt_register"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/blue"
+                android:textSize="32sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ButtonBackRegister" />
+
+            <RelativeLayout
+                android:id="@+id/relativeSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewRegister">
+
+                <RelativeLayout
+                    android:id="@+id/RelativeLayoutName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:text="@string/txt_name"
+                        android:textColor="@color/grey"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/editTextNameRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:hint="@string/txt_app"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModels.userName}" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="24dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_user" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/RelativeEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/RelativeLayoutName"
+
+                    android:layout_marginTop="40dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:text="@string/txt_email"
+                        android:textColor="@color/grey"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/editTextEmailRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:hint="@string/txt_hint_email"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModels.userEmail}" />// de lam gi
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="24dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_mail" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/RelativePass"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/RelativeEmail"
+                    android:layout_marginTop="40dp">
+
+                    <TextView
+                        android:id="@+id/textViewPass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:text="@string/txt_password"
+                        android:textColor="@color/grey"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/editTextPassRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:hint="@string/txt_hint_pass"
+                        android:inputType="textPassword"
+                        android:text="@={viewModels.userPass}" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="24dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_key_1" />
+                </RelativeLayout>
+
+                <CheckBox
+                    android:layout_marginStart="30dp"
+                    android:id="@+id/checkboxRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/RelativePass"
+                    android:layout_marginTop="32dp"
+                    android:button="@drawable/checkbox_custom"
+                    />
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/checkboxRegister"
+                    android:id="@+id/textViewCheckbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/RelativePass"
+                    android:layout_marginTop="32dp"
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/ButtonRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/checkboxRegister"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/custom_button_login"
+                    android:onClick="@{()->viewModels.signUpButtonOnClick()}"
+                    android:text="@string/txt_register"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/ButtonMoveLogin"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="37dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="@string/txt_login_span"
+                android:textAllCaps="false"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeSignUp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
