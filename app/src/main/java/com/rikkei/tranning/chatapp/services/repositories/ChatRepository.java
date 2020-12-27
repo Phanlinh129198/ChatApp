@@ -62,7 +62,7 @@ public class ChatRepository {
         if (firebaseUser != null) {
             String idUser = firebaseUser.getUid();
             MessageModel messageModel = new MessageModel(idUser, id, message, type, date, hour, false, System.currentTimeMillis(), false);
-            String key;// biến để phân biệt kênh chat
+            String key;// biến để phân biệt tin nhắn chat là của user nào
             if (id.compareTo(idUser) > 0) {
                 key = id + idUser;
             } else {
@@ -71,7 +71,7 @@ public class ChatRepository {
             databaseReference.child(key).push().setValue(messageModel);
         }
     }
-
+//load 10 tin nhắn
     public void getSomeOfMessage(String idFriend, MessageStatus messageStatus) {
         if (firebaseUser == null) {
             return;
@@ -103,7 +103,7 @@ public class ChatRepository {
             }
         });
     }
-
+// hỏi trung
     public void getMessage(String idFriend, long lastPositionChat, MessageStatus messageStatus) {
         if (firebaseUser == null) {
             return;
@@ -192,7 +192,9 @@ public class ChatRepository {
                 for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
                     String key = keyNode.getKey();
                     assert key != null;
+                    //phân biệt user đã chat vs mk
                     if (key.contains(firebaseUser.getUid())) {
+                        //key = myid + userid => chia ra để ktra xem id của  mk hay user khác để thêm vào list
                         String x = key.substring(0, key.length() / 2);
                         String y = key.substring(key.length() / 2);
                         if (!x.equals(firebaseUser.getUid())) {

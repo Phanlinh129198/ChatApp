@@ -122,11 +122,11 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
 //        if (mViewDataBinding.editTextMessage.requestFocus()) {
 //            inputMethodManager.showSoftInput(mViewDataBinding.editTextMessage, InputMethodManager.SHOW_IMPLICIT);
 //        }
-
+    // nút back
         mViewDataBinding.ImageButtonBackChat.setOnClickListener(v -> removeFragment());
-
+    //nút gửi thêm options
         mViewDataBinding.imageButtonPhotoChat.setOnClickListener(view12 -> buildRecyclerImage());
-
+    //nút gửi
         mViewDataBinding.imageButtonSend.setOnClickListener(v -> {
             Bundle bundle = getArguments();
             String iD = null;
@@ -137,14 +137,15 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
             mViewModel.sendMessage(iD, message, "Text");
             mViewDataBinding.editTextMessage.setText("");
         });
-        mViewDataBinding.editTextMessage.setOnFocusChangeListener((v, hasFocus) -> {
-            if (mViewDataBinding.recyclerSticker.getVisibility() == View.VISIBLE || mViewDataBinding.recyclerImage.getVisibility() == View.VISIBLE) {
-                mViewDataBinding.recyclerSticker.setVisibility(View.GONE);
-                mViewDataBinding.recyclerImage.setVisibility(View.GONE);
-                mViewDataBinding.imageSendSticker.setImageResource(R.drawable.ic_smile_1);
-                mViewDataBinding.imageButtonPhotoChat.setImageResource(R.drawable.ic_photo);
-            }
-        });
+        //focus vào textbox
+//        mViewDataBinding.editTextMessage.setOnFocusChangeListener((v, hasFocus) -> {
+//            if (mViewDataBinding.recyclerSticker.getVisibility() == View.VISIBLE || mViewDataBinding.recyclerImage.getVisibility() == View.VISIBLE) {
+//                mViewDataBinding.recyclerSticker.setVisibility(View.GONE);
+//                mViewDataBinding.recyclerImage.setVisibility(View.GONE);
+//                mViewDataBinding.imageSendSticker.setImageResource(R.drawable.ic_smile_1);
+//                mViewDataBinding.imageButtonPhotoChat.setImageResource(R.drawable.ic_photo);
+//            }
+//        });
 
         mViewDataBinding.editTextMessage.setOnClickListener(v -> {
             mViewDataBinding.editTextMessage.requestFocus();
@@ -167,7 +168,7 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mViewDataBinding.recyclerSticker.setVisibility(View.GONE);
                 mViewDataBinding.imageSendSticker.setImageResource(R.drawable.ic_smile_1);
-
+                //set nếu chưa nhập gì thì disable icon send
                 if (TextUtils.isEmpty(s.toString())) {
                     mViewDataBinding.imageButtonSend.setEnabled(false);
                     mViewDataBinding.imageButtonSend.setImageResource(R.drawable.ic_send_unable);
@@ -181,9 +182,10 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
             public void afterTextChanged(Editable s) {
             }
         });
-        //test
+
 
         mViewDataBinding.imageSendSticker.setOnClickListener(view1 -> {
+            //set hightlight icon sticker
             if (mViewDataBinding.recyclerSticker.getVisibility() == View.VISIBLE) {
                 mViewDataBinding.editTextMessage.requestFocus();
                 mViewDataBinding.recyclerImage.setVisibility(View.GONE);
@@ -214,9 +216,11 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
         chatAdapter = new ChatAdapter(getContext(), "");
 
         chatAdapter.setOnItemClickListener(messageModel -> {
+            //click vào tin nhắn là ảnh
             if (messageModel.getType().equals("Image")) {
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction()
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                //cho phép zoom ảnh
                 ZoomImageFragment zoomImageFragment = new ZoomImageFragment();
                 Bundle bundle1 = new Bundle();
                 bundle1.putString("image", messageModel.getMessage());
@@ -226,6 +230,7 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
             }
         });
         mViewDataBinding.recyclerChat.setAdapter(chatAdapter);
+        //set online, offline
         mViewModel.userChatLiveData.observe(getViewLifecycleOwner(), userModel -> {
             chatAdapter.setImage(userModel.getUserImgUrl());
             if (userModel.getStatus().equals("offline")) {
@@ -263,7 +268,8 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
         mViewModel.messageListLiveData.observe(getViewLifecycleOwner(), messageModels -> {
             ArrayList<MessageModel> arrayList = new ArrayList<>(messageModels);
             if (arrayList.size() > 0) {
-                lastPositionChat = arrayList.get(0).getTimeLong();
+                lastPositionChat = arrayList.get(0).getTimeLong();// tin nhắn cuối cùng hiển thị time
+                // hiển thị tin nhắn gửi cùng lúc - chỉ show 1 icon user
                 for (int i = 0; i < arrayList.size() - 1; i++) {
                     int j = i + 1;
                     if (arrayList.get(i).getIdReceiver().equals(arrayList.get(j).getIdReceiver())
@@ -282,7 +288,7 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
         stickerAdapter = new StickerAdapter(Arrays.asList(stickerResource), requireContext());
         mViewDataBinding.recyclerSticker.setAdapter(stickerAdapter);
         mViewDataBinding.recyclerSticker.setHasFixedSize(true);
-
+        //set click vào sticker
         stickerAdapter.setOnItemClickListener(nameSticker -> mViewModel.sendMessage(id, nameSticker, "sticker"));
 
         ArrayList<String> arrayImage = getAllShownImagesPath(getActivity());
@@ -296,7 +302,7 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
             uploadImage();
         });
     }
-
+// Khi click user bất kì check id user đó = id user get từ firebase => set checkseen = true
     public void checkSeen(String id) {
         String myId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         databaseReference = mViewModel.checkSeen(id);
@@ -326,7 +332,7 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
         super.onPause();
         databaseReference.removeEventListener(listener);
     }
-
+// nút back
     private void removeFragment() {
         inputMethodManager.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
         databaseReference.removeEventListener(listener);
@@ -401,6 +407,7 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
                     + "." + getFileExtension(imageUri));
             Log.d("Show Uri in fragment", imageUri.toString());
             uploadTask = fileReference.putFile(imageUri);
+            //get url ảnh
             uploadTask.continueWithTask(task -> {
                 if (!task.isSuccessful()) {
                     throw Objects.requireNonNull(task.getException());
@@ -408,6 +415,7 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
                 return fileReference.getDownloadUrl();
 
             }).addOnCompleteListener(task -> {
+                // ép kiểu url => string uri => dùng viewmodel để hiển thị
                 if (task.isSuccessful()) {
                     Uri downloadUri = task.getResult();
                     assert downloadUri != null;

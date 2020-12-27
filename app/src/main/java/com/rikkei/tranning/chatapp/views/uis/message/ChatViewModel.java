@@ -89,7 +89,7 @@ public class ChatViewModel extends ViewModel {
             }
         }
     }
-
+//đếm user chưa đọc tin nhắn
     public int getCountUnReadMessage(ArrayList<ChatModel> chatModelArrayList) {
         int count = 0;
         int size = chatModelArrayList.size();
