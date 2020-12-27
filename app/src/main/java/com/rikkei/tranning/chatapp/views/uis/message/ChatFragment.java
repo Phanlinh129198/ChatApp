@@ -181,6 +181,7 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
             public void afterTextChanged(Editable s) {
             }
         });
+        //test
 
         mViewDataBinding.imageSendSticker.setOnClickListener(view1 -> {
             if (mViewDataBinding.recyclerSticker.getVisibility() == View.VISIBLE) {
