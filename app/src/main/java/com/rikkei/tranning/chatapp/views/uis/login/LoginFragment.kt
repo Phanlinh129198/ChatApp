@@ -64,7 +64,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding?, LoginViewModel?>() {
                 }
                 is LoginViewModel.LoginStatus.IsOk -> {
                     progress_circular.visibility = View.GONE
-//                    Toast.makeText(context, "Login Success!", Toast.LENGTH_SHORT).show()
+                   Toast.makeText(context, "Login Success!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(context, MainActivity::class.java)
                     startActivity(intent)
                     activity?.finish()
@@ -76,11 +76,23 @@ class LoginFragment : BaseFragment<FragmentLoginBinding?, LoginViewModel?>() {
                     progress_circular.visibility = View.GONE
 
                 }
-                is LoginViewModel.LoginStatus.ErrorPassAndEmail -> {
+                is LoginViewModel.LoginStatus.ErrorPass -> {
                     if (it.isError) {
                         Toast.makeText(
                             context,
-                            "Invalid Email Or Password! Login",
+                            "Invalid Password! Login",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        mViewDataBinding!!.editTextEmailLogin.text = null
+                        mViewDataBinding!!.editTextPassLogin.text = null
+                        progress_circular.visibility = View.GONE
+                    }
+                }
+                is LoginViewModel.LoginStatus.ErrorEmail -> {
+                    if (it.isError) {
+                        Toast.makeText(
+                            context,
+                            "Invalid Email! Login",
                             Toast.LENGTH_SHORT
                         ).show()
                         mViewDataBinding!!.editTextEmailLogin.text = null

@@ -5,20 +5,16 @@ import java.util.regex.Pattern
 
 class LoginUserModel(var email: String, var password: String) {
 
-    fun validateEmailPassword(): Boolean {
+    fun validateEmail(): Boolean {
+        //return true;
+        val a = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        return  Pattern.compile(a).matcher(email).matches();
+    }
+    fun validatePass(): Boolean {
+        //số,chữ,kí tự đặc biệt >6 kí tự
+        val a = "^(?=.*[0-9])(?=.*[a-z])(?=.*[\\\\\\/%§\"&“|`´}{°><:.;#')(@_\$\"!?*=^-]).{6,}\$";
+        return  Pattern.compile(a).matcher(password).matches();
 
-//        val a = Pattern.compile(
-//                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]|[\\w-]{2,}))@"
-//                        + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-//                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
-//                        + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-//                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9]))|"
-//                        + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$"
-//            ).matcher(email).matches() && Pattern.compile(
-//                "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$"
-//            ).matcher(password).matches()
-//        return a
-        return true;
     }
 
     val isEmailValid: Boolean

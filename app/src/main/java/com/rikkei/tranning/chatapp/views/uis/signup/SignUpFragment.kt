@@ -94,8 +94,15 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding, SignUpViewModel>() {
                     mViewDataBinding.checkboxRegister.isChecked = false
                     progress_circular_signUp.visibility = View.GONE
                 }
-                is SignUpViewModel.SignUpStatus.ErrorPassAndEmail -> {
-                    Toast.makeText(context, "Invalid Email Or Password!", Toast.LENGTH_SHORT).show()
+                is SignUpViewModel.SignUpStatus.ErrorEmail -> {
+                    Toast.makeText(context, "Invalid email", Toast.LENGTH_SHORT).show()
+                    mViewDataBinding.editTextPassRegister.text = null
+                    mViewDataBinding.editTextEmailRegister.text = null
+                    mViewDataBinding.checkboxRegister.isChecked = false
+                    progress_circular_signUp.visibility = View.GONE
+                }
+                is SignUpViewModel.SignUpStatus.ErrorPass -> {
+                    Toast.makeText(context, "Invalid password, password must be more than 6 character, requires a special number of letters and characters ", Toast.LENGTH_SHORT).show()
                     mViewDataBinding.editTextPassRegister.text = null
                     mViewDataBinding.editTextEmailRegister.text = null
                     mViewDataBinding.checkboxRegister.isChecked = false
@@ -111,6 +118,7 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding, SignUpViewModel>() {
                     mViewDataBinding!!.editTextNameRegister.error = "REQUIRED"
                 }
             })
+
     }
 
     private fun eventEnableButton() {

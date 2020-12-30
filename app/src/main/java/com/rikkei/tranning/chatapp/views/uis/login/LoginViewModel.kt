@@ -21,15 +21,19 @@ class LoginViewModel : ViewModel() {
 
     fun onClick() {
         val user = LoginUserModel(EmailAddress.value.toString(), Password.value.toString())
-        if (!user.validateEmailPassword()) {
-            loginStatus.value = LoginStatus.ErrorPassAndEmail(true)
-        } else {
+        if (!user.validateEmail()) {
+            loginStatus.value = LoginStatus.ErrorEmail(true)
+//        } else if(!user.validatePass()) {
+//            loginStatus.value = LoginStatus.ErrorPass(true)
+        }
+        else{
             loginFirebase()
         }
     }
 
     fun resetStatus() {
-        loginStatus.value = LoginStatus.ErrorPassAndEmail(false)
+        loginStatus.value = LoginStatus.ErrorPass(false)
+        loginStatus.value = LoginStatus.ErrorEmail(false)
     }
 
     private fun loginFirebase() {
@@ -55,7 +59,9 @@ class LoginViewModel : ViewModel() {
 
         data class Failure(var e: Throwable) : LoginStatus()
 
-        data class ErrorPassAndEmail(var isError: Boolean) : LoginStatus()
+        data class ErrorPass(var isError: Boolean) : LoginStatus()
+
+        data class ErrorEmail(var isError: Boolean) : LoginStatus()
 
         data class Register(var isRegister: Boolean) : LoginStatus()
     }
