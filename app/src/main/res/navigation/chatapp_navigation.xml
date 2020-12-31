@@ -8,19 +8,19 @@
     tools:ignore="UnusedNavigation">
     <fragment
         android:id="@+id/navigation_message"
-        android:name="com.rikkei.tranning.chatapp.views.uis.message.MessageFragment"
+        android:name="com.linh.doan.views.uis.message.MessageFragment"
         android:label="@string/txt_message"
         tools:layout="@layout/fragment_message"/>
 
     <fragment
         android:id="@+id/navigation_friends"
-        android:name="com.rikkei.tranning.chatapp.views.uis.friend.FriendFragment"
+        android:name="com.linh.doan.views.uis.friend.FriendFragment"
         android:label="@string/txt_friend"
         tools:layout="@layout/fragment_friend" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.rikkei.tranning.chatapp.views.uis.profile.ProfileFragment"
+        android:name="com.linh.doan.views.uis.profile.ProfileFragment"
         android:label="@string/txt_profile"
         tools:layout="@layout/fragment_profile" />
 

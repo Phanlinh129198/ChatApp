@@ -6,7 +6,7 @@
 
         <variable
             name="viewModelMyFriend"
-            type="com.rikkei.tranning.chatapp.views.uis.friend.SharedFriendViewModel" />
+            type="com.linh.doan.views.uis.friend.SharedFriendViewModel" />
     </data>
 
     <RelativeLayout

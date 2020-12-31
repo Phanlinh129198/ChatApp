@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModelChat"
-            type="com.rikkei.tranning.chatapp.views.uis.message.ChatViewModel" />
+            type="com.linh.doan.views.uis.message.ChatViewModel" />
     </data>
 
     <RelativeLayout
@@ -20,14 +20,16 @@
             android:onClick="hideKeyBoardMain"
             android:id="@+id/relativeLayoutTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/grey2"
+           >
 
             <ImageButton
                 android:id="@+id/ImageButtonBackChat"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:background="@null"
                 android:scaleType="center"
                 android:src="@drawable/ic_back_blue" />
@@ -37,7 +39,7 @@
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="18dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:layout_toEndOf="@+id/ImageButtonBackChat"
                 tools:src="@mipmap/ic_launcher" />
 
@@ -46,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="20dp"
                 android:layout_toEndOf="@+id/imageViewTitleChat"
                 android:ellipsize="end"
                 android:maxLines="1"
@@ -64,7 +66,7 @@
             <TextView
                 android:id="@+id/string_status_chat"
                 android:text="@string/txt_status_online"
-                android:layout_marginStart="7dp"
+                android:layout_marginStart="15dp"
                 android:layout_below="@id/textViewUserNameChat"
                 android:layout_toEndOf="@+id/status_chat"
                 android:layout_width="wrap_content"
@@ -79,12 +81,12 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_above="@+id/relativeBottom"
-            android:background="@drawable/fragment"
+            android:background="@drawable/background"
             android:id="@+id/recyclerChat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/relativeLayoutTitle"
-            android:layout_marginTop="30dp" />
+            android:layout_marginTop="5dp" />
 
         <ProgressBar
             android:id="@+id/progress_circular_loadMessage"
@@ -99,10 +101,7 @@
             android:layout_above="@+id/layoutBottom"
             android:layout_centerVertical="true"
             android:id="@+id/relativeBottom"
-            android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:background="@color/grey2"
             android:layout_width="match_parent"
             android:layout_height="60dp">
             <ImageButton

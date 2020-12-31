@@ -11,7 +11,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.rikkei.chatapp"
+        applicationId "com.linh.doan"
         minSdkVersion 22
         targetSdkVersion 29
         versionCode 1
