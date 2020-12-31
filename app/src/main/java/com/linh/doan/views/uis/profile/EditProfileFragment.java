@@ -98,11 +98,17 @@ public class EditProfileFragment extends BaseFragment<FragmentEditprofileBinding
                 date = "default";
             }
             if (mViewModel.validatePhoneNumber(phone)) {
-                mViewModel.updateInfoUser("userName", name);
-                mViewModel.updateInfoUser("userPhone", phone);
-                mViewModel.updateInfoUser("userDateOfBirth", date);
-                Toast.makeText(getContext(), R.string.txt_save_profile_success, Toast.LENGTH_SHORT).show();
-                removeFragmentSave();
+                if(mViewModel.validateName(name)) {
+                    mViewModel.updateInfoUser("userName", name);
+                    mViewModel.updateInfoUser("userPhone", phone);
+                    mViewModel.updateInfoUser("userDateOfBirth", date);
+                    Toast.makeText(getContext(), R.string.txt_save_profile_success, Toast.LENGTH_SHORT).show();
+                    removeFragmentSave();
+                }
+                else {
+                    Toast.makeText(getContext(), "Name must be less 60 character", Toast.LENGTH_SHORT).show();
+                }
+                
             } else {
                 Toast.makeText(getContext(), R.string.txt_notification_phone_number, Toast.LENGTH_SHORT).show();
             }
@@ -136,7 +142,7 @@ public class EditProfileFragment extends BaseFragment<FragmentEditprofileBinding
     }
 
     private void updateLabel() {
-        String myFormat = "dd/mm/yyyy"; //In which you need put here
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         mViewDataBinding.editDateOfBirthProfile.setText(sdf.format(myCalendar.getTime()));
     }

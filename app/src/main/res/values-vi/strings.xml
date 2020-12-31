@@ -56,7 +56,7 @@
     <string name="txt_hint_phone_number">0999999999</string>
     <string name="txt_hint_date">Chọn ngày sinh</string>
     <string name="txt_save_profile_success">Cập nhật trang cá nhân thành công</string>
-    <string name="txt_notification_phone_number">Số điện thoại của bạn phải bao gồm 10 chữ số</string>
+    <string name="txt_notification_phone_number">Số điện thoại của bạn phải bao gồm 10 chữ số và bắt đầu bằng số 0</string>
 
     <!--    dialog-->
     <string name="txt_notification_dialog">Thông báo</string>

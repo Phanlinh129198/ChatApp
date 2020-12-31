@@ -56,7 +56,7 @@
     <string name="txt_hint_phone_number">0999999999</string>
     <string name="txt_hint_date">Choose date of birth</string>
     <string name="txt_save_profile_success">Save profile success</string>
-    <string name="txt_notification_phone_number">Your phone number must have a 10-digit number</string>
+    <string name="txt_notification_phone_number">Your phone number must have a 10-digit number and start with 0</string>
 
     <!--    dialog-->
     <string name="txt_notification_dialog">Notification</string>

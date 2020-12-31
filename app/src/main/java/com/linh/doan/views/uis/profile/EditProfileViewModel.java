@@ -18,6 +18,9 @@ public class EditProfileViewModel extends ViewModel {
     }
 
     public Boolean validatePhoneNumber(String a) {
-        return a.length() == 10 || a.equals("default");
+        return a.length() == 10 && a.startsWith("0") || a.equals("default");
+    }
+    public Boolean validateName(String a) {
+        return a.length() <= 60  || a.equals("default");
     }
 }
