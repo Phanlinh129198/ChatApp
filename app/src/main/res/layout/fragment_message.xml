@@ -7,7 +7,7 @@
 
         <variable
             name="messageViewModel"
-            type="com.rikkei.tranning.chatapp.views.uis.message.ChatViewModel" />
+            type="com.linh.doan.views.uis.message.ChatViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

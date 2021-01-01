@@ -6,7 +6,7 @@
 
         <variable
             name="viewModelEditProfile"
-            type="com.rikkei.tranning.chatapp.views.uis.profile.EditProfileViewModel" />
+            type="com.linh.doan.views.uis.profile.EditProfileViewModel" />
     </data>
 
     <RelativeLayout

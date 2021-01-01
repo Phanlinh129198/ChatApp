@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.rikkei.tranning.chatapp.views.uis.login.LoginViewModel" />
+            type="com.linh.doan.views.uis.login.LoginViewModel" />
     </data>
     <ScrollView
         android:fillViewport="true"
@@ -19,7 +19,7 @@
             android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@drawable/background"
             android:onClick="hideKeyBoard"
             android:paddingHorizontal="24dp">
             <ProgressBar
@@ -35,34 +35,36 @@
                 android:id="@+id/ImageViewLogo"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="57dp"
+                android:layout_marginTop="40dp"
                 android:src="@drawable/ic_mail_blue"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.33" />
 
-            <TextView
-                android:id="@+id/TextViewDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="@string/txt_title_app"
-                android:textColor="#000000"
-                android:textSize="26sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ImageViewLogo" />
+<!--            <TextView-->
+<!--                android:id="@+id/TextViewDescription"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="3dp"-->
+<!--                android:text="@string/txt_title_app"-->
+<!--                android:textColor="#000000"-->
+<!--                android:textSize="26sp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/ImageViewLogo" />-->
 
             <TextView
                 android:id="@+id/TextViewLoginTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="11dp"
+                android:layout_marginTop="1dp"
                 android:text="@string/txt_login"
                 android:textColor="@color/blue"
+                android:textStyle="bold"
+                android:textAlignment="center"
                 android:textSize="32sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TextViewDescription" />
+                app:layout_constraintTop_toBottomOf="@+id/ImageViewLogo" />
 
             <RelativeLayout
                 android:id="@+id/relativeLogin"
@@ -170,7 +172,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="38dp"
-                android:background="@color/white"
                 android:gravity="center"
                 android:textAllCaps="false"
                 android:textSize="14sp" />

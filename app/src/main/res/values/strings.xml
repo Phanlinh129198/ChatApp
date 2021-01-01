@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Awesome Chat</string>
+    <string name="app_name">Story Chat</string>
     <string name="txt_app">Name</string>
     <!--    login-->
     <string name="txt_login">Login</string>
-    <string name="txt_title_app">Awesome Chat Experience</string>
+    <string name="txt_title_app">Story Chat Experience</string>
     <string name="txt_email">EMAIL</string>
     <string name="txt_hint_email">yourmail@gmail.com</string>
     <string name="txt_hint_pass">********</string>
