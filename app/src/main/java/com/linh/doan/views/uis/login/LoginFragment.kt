@@ -71,7 +71,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding?, LoginViewModel?>() {
                     activity?.finish()
                 }
                 is LoginViewModel.LoginStatus.Failure -> {
-                    Toast.makeText(context, "Login Failed!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Your email or password incorrect!", Toast.LENGTH_SHORT).show()
                     mViewDataBinding!!.editTextEmailLogin.text = null
                     mViewDataBinding!!.editTextPassLogin.text = null
                     progress_circular.visibility = View.GONE
