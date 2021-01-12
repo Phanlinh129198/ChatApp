@@ -1,11 +1,11 @@
 package com.linh.doan.views.uis.message;
 
-import android.content.pm.PackageManager;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,13 +51,11 @@ import com.linh.doan.views.adapters.ChatAdapter;
 import com.linh.doan.views.adapters.ImageAdapter;
 import com.linh.doan.views.adapters.StickerAdapter;
 import com.linh.doan.views.uis.ViewModelProviderFactory;
-import com.linh.doan.views.uis.message.ChatViewModel;
-import com.linh.doan.views.uis.message.ZoomImageFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-
+import java.util.List;
 import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
@@ -90,6 +89,7 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
 
     private static final int IMAGE_REQUEST = 1;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference("chat");
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     private Uri imageUri;
     String uriImage;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -215,7 +215,7 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
         mViewModel.getInfoUserChat(id);
         mViewDataBinding.recyclerChat.setLayoutManager(layoutManager);
         mViewDataBinding.recyclerChat.setHasFixedSize(true);
-        chatAdapter = new ChatAdapter(getContext(), "");
+        chatAdapter = new ChatAdapter(getContext(), "", this);
 
         chatAdapter.setOnItemClickListener(messageModel -> {
             //click vào tin nhắn là ảnh
@@ -267,18 +267,33 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
                 }
             }
         });
+
         mViewModel.messageListLiveData.observe(getViewLifecycleOwner(), messageModels -> {
-            ArrayList<MessageModel> arrayList = new ArrayList<>(messageModels);
+            List<MessageModel> arrayList = new ArrayList<>(messageModels);
             if (arrayList.size() > 0) {
                 lastPositionChat = arrayList.get(0).getTimeLong();// tin nhắn cuối cùng hiển thị time
                 // hiển thị tin nhắn gửi cùng lúc - chỉ show 1 icon user
-                for (int i = 0; i < arrayList.size() - 1; i++) {
+//                for (int i = 0; i < arrayList.size() - 1; i++) {
+//                    int j = i + 1;
+//                    if (arrayList.get(i).getIdReceiver().equals(arrayList.get(j).getIdReceiver())
+//                            && arrayList.get(i).getIdSender().equals(arrayList.get(j).getIdSender())) {
+//                        arrayList.get(i).setIsShow(true);
+//                    }
+//                }
+                for (int i = 0; i < arrayList.size(); i++) {
                     int j = i + 1;
-                    if (arrayList.get(i).getIdReceiver().equals(arrayList.get(j).getIdReceiver())
-                            && arrayList.get(i).getIdSender().equals(arrayList.get(j).getIdSender())) {
-                        arrayList.get(i).setIsShow(true);
+                    if (j < arrayList.size()) {
+                        if (arrayList.get(i).getIdReceiver().equals(arrayList.get(j).getIdReceiver())
+                                && arrayList.get(i).getIdSender().equals(arrayList.get(j).getIdSender())) {
+                            arrayList.get(i).setIsShow(true);
+                        }
+                    }
+
+                    if (!arrayList.get(i).getDelete().contains(firebaseUser.getUid())) {
+                        arrayList.remove(i);
                     }
                 }
+
                 chatAdapter.submitList(arrayList);
                 mViewDataBinding.recyclerChat.smoothScrollToPosition(arrayList.size()-1);
             }

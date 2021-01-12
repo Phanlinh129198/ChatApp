@@ -61,7 +61,8 @@ public class ChatRepository {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
             String idUser = firebaseUser.getUid();
-            MessageModel messageModel = new MessageModel(idUser, id, message, type, date, hour, false, System.currentTimeMillis(), false);
+            String delete = id + idUser;
+            MessageModel messageModel = new MessageModel(idUser, id, message, type, date, hour, false, System.currentTimeMillis(), false, delete);
             String key;// biến để phân biệt tin nhắn chat là của user nào
             if (id.compareTo(idUser) > 0) {
                 key = id + idUser;
@@ -129,7 +130,6 @@ public class ChatRepository {
                     }
 
                     messageStatus.DataIsLoaded(messageList);
-
                 }
 
                 @Override

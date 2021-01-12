@@ -61,6 +61,7 @@
     <!--    dialog-->
     <string name="txt_notification_dialog">Thông báo</string>
     <string name="txt_description_dialog">Bạn có chắc chắn muốn đăng xuất không?</string>
+    <string name="txt_description_dialog_delete">Bạn có chắc chắn muốn xoá tin nhắn này không?</string>
     <string name="txt_no">Không</string>
     <string name="txt_description_dialog_friend">Trở thành bạn bè để có thể gửi tin nhắn cho nhau nhé :3</string>
     <string name="txt_ok">OK</string>

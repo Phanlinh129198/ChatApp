@@ -61,6 +61,7 @@
     <!--    dialog-->
     <string name="txt_notification_dialog">Notification</string>
     <string name="txt_description_dialog">Are you sure you want to log out?</string>
+    <string name="txt_description_dialog_delete">Are you sure you want to delete?</string>
     <string name="txt_no">No</string>
     <string name="txt_description_dialog_friend">Become a friend to be able to send a message to each other :3</string>
     <string name="txt_ok">OK</string>

@@ -42,6 +42,10 @@ public class ChatViewModel extends ViewModel {
         chatRepository.createMessage(idUser, message, type);
     }
 
+    public void deleteMessage(){
+
+    }
+
     public void displayMessage(String idFriend, long lastPositionChat) {
         isShowProcessLoadMessage.setValue(true);
         chatRepository.getMessage(idFriend, lastPositionChat, messageArray -> {

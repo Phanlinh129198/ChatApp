@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.linh.doan.R;
 import com.linh.doan.services.models.MessageModel;
+import com.linh.doan.views.uis.message.ChatViewModel;
+import com.linh.doan.views.uis.message.DialogDeleteChatFragment;
+import com.linh.doan.views.uis.profile.DialogLogoutFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,16 +33,17 @@ public class ChatAdapter extends ListAdapter<MessageModel, ChatAdapter.ViewHolde
     public int TITLE_RIGHT = 1;
     public String urlImage;
     private OnItemClickListener listener;
+    private Fragment fragment;
 
-    public ChatAdapter(Context context, String urlImage) {
+    public ChatAdapter(Context context, String urlImage,Fragment fragment) {
         super(DIFF_CALLBACK);
         this.context = context;
+        this.fragment = fragment;
         this.urlImage = urlImage;
     }
 
     public void setImage(String urlImage) {
         this.urlImage = urlImage;
-
     }
 
     private static final DiffUtil.ItemCallback<MessageModel> DIFF_CALLBACK = new DiffUtil.ItemCallback<MessageModel>() {
@@ -131,6 +136,12 @@ public class ChatAdapter extends ListAdapter<MessageModel, ChatAdapter.ViewHolde
                 holder.txtDate.setVisibility(View.VISIBLE);
             }
         });
+        holder.txtMessage.setOnLongClickListener(view -> {
+            DialogDeleteChatFragment dialog = new DialogDeleteChatFragment();
+            dialog.show(fragment.getParentFragmentManager(), null);
+            return true;
+        });
+
         holder.imgSticker.setOnClickListener(view -> {
             if (holder.txtDate.getVisibility() == View.VISIBLE) {
                 holder.txtDate.setVisibility(View.GONE);
@@ -138,6 +149,12 @@ public class ChatAdapter extends ListAdapter<MessageModel, ChatAdapter.ViewHolde
                 holder.txtDate.setVisibility(View.VISIBLE);
             }
         });
+        holder.imgSticker.setOnLongClickListener(view -> {
+            DialogDeleteChatFragment dialog = new DialogDeleteChatFragment();
+            dialog.show(fragment.getParentFragmentManager(), null);
+            return true;
+        });
+
 //        if (messageModel.getType().equals("Image")) {
 //            holder.imgMessage.setOnClickListener(v -> {
 //                if (listener != null && position != RecyclerView.NO_POSITION) {
