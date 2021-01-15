@@ -12,15 +12,28 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProviders;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.linh.doan.R;
+import com.linh.doan.services.models.MessageModel;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class DialogDeleteChatFragment extends DialogFragment {
     Button btnDelete, btnNo;
-    private ChatViewModel chatViewModel;
+    private MessageModel messageModel;
+    private String idFriend;
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+    public DialogDeleteChatFragment(MessageModel messageModel, String idFriend) {
+        this.messageModel = messageModel;
+        this.idFriend = idFriend;
+    }
 
     @Nullable
     @Override
@@ -37,8 +50,6 @@ public class DialogDeleteChatFragment extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        chatViewModel =
-                ViewModelProviders.of(this).get(ChatViewModel.class);
         btnDelete = view.findViewById(R.id.buttonDialogDelete);
         btnNo = view.findViewById(R.id.buttonDialogNo);
         btnNo.setOnClickListener(view1 -> Objects.requireNonNull(getDialog()).dismiss());
@@ -46,6 +57,24 @@ public class DialogDeleteChatFragment extends DialogFragment {
     }
 
     public void delete() {
-chatViewModel.sendMessage();
+        String myId = firebaseUser.getUid();
+        String key;
+        if (idFriend.compareTo(myId) > 0) {
+            key = idFriend + myId;
+        } else {
+            key = myId + idFriend;
+        }
+
+        String delete = messageModel.getDelete();
+        delete = delete.replaceAll(myId, "");
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("chat").child(key).child(messageModel.getIdKeyNode());
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("delete", delete);
+
+        databaseReference.updateChildren(childUpdates);
+
+        Objects.requireNonNull(getDialog()).dismiss();
     }
 }

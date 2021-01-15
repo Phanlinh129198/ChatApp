@@ -212,10 +212,11 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
         if (bundle != null) {
             id = bundle.getString("idUser");
         }
+        Log.d("son.pt","id= "+id);
         mViewModel.getInfoUserChat(id);
         mViewDataBinding.recyclerChat.setLayoutManager(layoutManager);
         mViewDataBinding.recyclerChat.setHasFixedSize(true);
-        chatAdapter = new ChatAdapter(getContext(), "", this);
+        chatAdapter = new ChatAdapter(getContext(), "", this,id);
 
         chatAdapter.setOnItemClickListener(messageModel -> {
             //click vào tin nhắn là ảnh
@@ -273,24 +274,11 @@ public class ChatFragment extends BaseFragment<FragmentChatBinding, ChatViewMode
             if (arrayList.size() > 0) {
                 lastPositionChat = arrayList.get(0).getTimeLong();// tin nhắn cuối cùng hiển thị time
                 // hiển thị tin nhắn gửi cùng lúc - chỉ show 1 icon user
-//                for (int i = 0; i < arrayList.size() - 1; i++) {
-//                    int j = i + 1;
-//                    if (arrayList.get(i).getIdReceiver().equals(arrayList.get(j).getIdReceiver())
-//                            && arrayList.get(i).getIdSender().equals(arrayList.get(j).getIdSender())) {
-//                        arrayList.get(i).setIsShow(true);
-//                    }
-//                }
-                for (int i = 0; i < arrayList.size(); i++) {
+                for (int i = 0; i < arrayList.size() - 1; i++) {
                     int j = i + 1;
-                    if (j < arrayList.size()) {
-                        if (arrayList.get(i).getIdReceiver().equals(arrayList.get(j).getIdReceiver())
-                                && arrayList.get(i).getIdSender().equals(arrayList.get(j).getIdSender())) {
-                            arrayList.get(i).setIsShow(true);
-                        }
-                    }
-
-                    if (!arrayList.get(i).getDelete().contains(firebaseUser.getUid())) {
-                        arrayList.remove(i);
+                    if (arrayList.get(i).getIdReceiver().equals(arrayList.get(j).getIdReceiver())
+                            && arrayList.get(i).getIdSender().equals(arrayList.get(j).getIdSender())) {
+                        arrayList.get(i).setIsShow(true);
                     }
                 }
 

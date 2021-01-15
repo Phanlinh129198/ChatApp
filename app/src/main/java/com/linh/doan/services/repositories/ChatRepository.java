@@ -92,7 +92,9 @@ public class ChatRepository {
                 messageList.clear();
                 for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
                     MessageModel message = keyNode.getValue(MessageModel.class);
-                    messageList.add(message);
+                    if (message.getDelete().contains(firebaseUser.getUid())) {
+                        messageList.add(message);
+                    }
                 }
                 isLoadedMessage.setValue(true);
                 messageStatus.DataIsLoaded(messageList);
@@ -126,7 +128,12 @@ public class ChatRepository {
                     messageList.clear();
                     for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
                         MessageModel message = keyNode.getValue(MessageModel.class);
-                        messageList.add(message);
+                        if (message != null) {
+                            message.setIdKeyNode(keyNode.getKey());
+                        }
+                        if(message.getDelete().contains(firebaseUser.getUid())){
+                            messageList.add(message);
+                        }
                     }
 
                     messageStatus.DataIsLoaded(messageList);
@@ -159,7 +166,6 @@ public class ChatRepository {
 
                 }
             });
-
         }
 
 

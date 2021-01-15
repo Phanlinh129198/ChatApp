@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.*
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.library.baseAdapters.BR
@@ -88,6 +89,7 @@ class SignUpFragment : BaseFragment<FragmentSignupBinding, SignUpViewModel>() {
                     replaceFragment()
                 }
                 is SignUpViewModel.SignUpStatus.Failure -> {
+                    Log.d("son.pt", it.e.toString())
                     Toast.makeText(context, "Sign up fail", Toast.LENGTH_SHORT).show()
                     mViewDataBinding.editTextPassRegister.text = null
                     mViewDataBinding.editTextEmailRegister.text = null

@@ -19,9 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.linh.doan.R;
 import com.linh.doan.services.models.MessageModel;
-import com.linh.doan.views.uis.message.ChatViewModel;
 import com.linh.doan.views.uis.message.DialogDeleteChatFragment;
-import com.linh.doan.views.uis.profile.DialogLogoutFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -34,12 +32,14 @@ public class ChatAdapter extends ListAdapter<MessageModel, ChatAdapter.ViewHolde
     public String urlImage;
     private OnItemClickListener listener;
     private Fragment fragment;
+    private String idFriend;
 
-    public ChatAdapter(Context context, String urlImage,Fragment fragment) {
+    public ChatAdapter(Context context, String urlImage,Fragment fragment,String idFriend) {
         super(DIFF_CALLBACK);
         this.context = context;
         this.fragment = fragment;
         this.urlImage = urlImage;
+        this.idFriend = idFriend;
     }
 
     public void setImage(String urlImage) {
@@ -137,7 +137,7 @@ public class ChatAdapter extends ListAdapter<MessageModel, ChatAdapter.ViewHolde
             }
         });
         holder.txtMessage.setOnLongClickListener(view -> {
-            DialogDeleteChatFragment dialog = new DialogDeleteChatFragment();
+            DialogDeleteChatFragment dialog = new DialogDeleteChatFragment(messageModel,idFriend);
             dialog.show(fragment.getParentFragmentManager(), null);
             return true;
         });
@@ -150,7 +150,7 @@ public class ChatAdapter extends ListAdapter<MessageModel, ChatAdapter.ViewHolde
             }
         });
         holder.imgSticker.setOnLongClickListener(view -> {
-            DialogDeleteChatFragment dialog = new DialogDeleteChatFragment();
+            DialogDeleteChatFragment dialog = new DialogDeleteChatFragment(messageModel,idFriend);
             dialog.show(fragment.getParentFragmentManager(), null);
             return true;
         });

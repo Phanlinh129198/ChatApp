@@ -1,7 +1,13 @@
 package com.linh.doan.services.models;
 
 
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class MessageModel {
+    private String idKeyNode;
     private String idSender;
     private String idReceiver;
     private String message;
@@ -13,7 +19,21 @@ public class MessageModel {
     private Boolean isShow;
     private String delete;
 
-    public MessageModel(String idSender, String idReceiver, String message, String type, String date, String time, Boolean checkSeen, long timeLong, Boolean isShow,String delete) {
+    public MessageModel(String idKeyNode, String idSender, String idReceiver, String message, String type, String date, String time, Boolean checkSeen, long timeLong, Boolean isShow, String delete) {
+        this.idSender = idSender;
+        this.idKeyNode = idKeyNode;
+        this.idReceiver = idReceiver;
+        this.message = message;
+        this.type = type;
+        this.date = date;
+        this.time = time;
+        this.timeLong = timeLong;
+        this.checkSeen = checkSeen;
+        this.isShow = isShow;
+        this.delete = delete;
+    }
+
+    public MessageModel(String idSender, String idReceiver, String message, String type, String date, String time, Boolean checkSeen, long timeLong, Boolean isShow, String delete) {
         this.idSender = idSender;
         this.idReceiver = idReceiver;
         this.message = message;
@@ -22,11 +42,19 @@ public class MessageModel {
         this.time = time;
         this.timeLong = timeLong;
         this.checkSeen = checkSeen;
-        this.isShow=isShow;
-        this.delete=delete;
+        this.isShow = isShow;
+        this.delete = delete;
     }
 
     public MessageModel() {
+    }
+
+    public String getIdKeyNode() {
+        return idKeyNode;
+    }
+
+    public void setIdKeyNode(String idKeyNode) {
+        this.idKeyNode = idKeyNode;
     }
 
     public Boolean getShow() {
@@ -115,5 +143,22 @@ public class MessageModel {
 
     public void setTimeLong(long timeLong) {
         this.timeLong = timeLong;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("checkSeen", checkSeen);
+        result.put("date", date);
+        result.put("delete", delete);
+        result.put("idReceiver", idReceiver);
+        result.put("idSender", idSender);
+        result.put("isShow", isShow);
+        result.put("message", message);
+        result.put("time", time);
+        result.put("timeLong", timeLong);
+        result.put("type", type);
+
+        return result;
     }
 }
